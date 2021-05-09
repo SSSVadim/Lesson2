@@ -25,7 +25,6 @@ function makeObjectDeepCopy(obj){
 	return newObj;
 }
 
-
 function selectFromInterval(arr, start, finish){
 	let newArr = [];
 
@@ -61,11 +60,10 @@ function selectFromInterval(arr, start, finish){
 				newArr.push(elem);
 			}
 		})
-	}
-
-	
+	}	
 	return newArr
 }
+
 
 function testNumber(num){
 	if (num === null || num === undefined || typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num)){
@@ -75,15 +73,14 @@ function testNumber(num){
 }
 
 
-
 let myIterable = {
-	from: 2,
-	to: 4,
+	from: 5,
+	to: 1,
 }
 
 
 myIterable[Symbol.iterator] = function() {
-	if (testNumber(this.from || testNumber(this.to)) || !(this.from <= this.to)) {
+	if (testNumber(this.from) || testNumber(this.to) || !(this.from <= this.to)) {
 		throw new Error('Ошибка');	
 	}
 	return {
@@ -98,6 +95,4 @@ myIterable[Symbol.iterator] = function() {
 		},
 	};
 };
-
-
 
