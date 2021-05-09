@@ -54,6 +54,9 @@ function selectFromInterval(arr, start, finish){
 
 	else {
 		arr.forEach(elem => {
+			if (testNumber(elem)) {
+				throw new Error('Одно из значений массива не действительно');	
+			}
 			if (elem >= start && elem <= finish){
 				newArr.push(elem);
 			}
@@ -65,10 +68,12 @@ function selectFromInterval(arr, start, finish){
 }
 
 function testNumber(num){
-	if (num === null || num === undefined || typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num) ){
+	if (num === null || num === undefined || typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num)){
 		return true
 	}
+	return false
 }
+
 
 
 let myIterable = {
@@ -76,9 +81,10 @@ let myIterable = {
 	to: 4,
 }
 
+
 myIterable[Symbol.iterator] = function() {
 	if (testNumber(this.from || testNumber(this.to)) || !(this.from <= this.to)) {
-		throw new Error('Начальное значение больше конечного');	
+		throw new Error('Ошибка');	
 	}
 	return {
 		current: this.from,
@@ -92,11 +98,6 @@ myIterable[Symbol.iterator] = function() {
 		},
 	};
 };
-
-
-for (let item of myIterable) {
-	console.log(item);
-}
 
 
 
