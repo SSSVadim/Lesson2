@@ -63,7 +63,7 @@ function selectFromInterval(arr, start, finish){
 }
 
 function testNumber(num){
-	if (typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num) ){
+	if (num === null || num === undefined || typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num) ){
 		return true
 	}
 }
