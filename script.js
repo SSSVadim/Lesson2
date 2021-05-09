@@ -58,18 +58,15 @@ function selectFromInterval(arr, start, finish){
 				newArr.push(elem);
 			}
 		})
-	}
-
-	
+	}	
 	return newArr
 }
 
 function testNumber(num){
-	if (num === null || num === undefined || typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num) ){
+	if (typeof(num) !== 'number' || num === -Infinity || num === Infinity || isNaN(num) ){
 		return true
 	}
 }
-
 
 let myIterable = {
 	from: 1,
@@ -92,18 +89,3 @@ myIterable[Symbol.iterator] = function() {
 		},
 	};
 };
-
-
-
-for (let item of myIterable) {
-	console.log(item);
-}
-
-
-
-
-// console.log(selectFromInterval([1,2,3,4,5], 2, 5));
-// console.log(selectFromInterval([1,2,3,4,5], 5, 2));
-// console.log(selectFromInterval('abc', 5, 2));
-// console.log(selectFromInterval([], 1, 3));
-// console.log(selectFromInterval([[],2,3,4,5], 5, 0));
