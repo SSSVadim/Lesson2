@@ -58,7 +58,9 @@ function selectFromInterval(arr, start, finish){
 				newArr.push(elem);
 			}
 		})
-	}	
+	}
+
+	
 	return newArr
 }
 
@@ -68,16 +70,17 @@ function testNumber(num){
 	}
 }
 
+
 let myIterable = {
-	from: 1,
-	to: 5,
+	from: 2,
+	to: 4,
 }
 
 myIterable[Symbol.iterator] = function() {
-	if (testNumber(this.from) || testNumber(this.to)){
-		throw new Error('Одно из значений не действительно');	
+	if (testNumber(this.from || testNumber(this.to)) || !(this.from <= this.to)) {
+		throw new Error('Начальное значение больше конечного');	
 	}
-	return {		
+	return {
 		current: this.from,
 		last: this.to,
 		next() {
@@ -89,3 +92,11 @@ myIterable[Symbol.iterator] = function() {
 		},
 	};
 };
+
+
+for (let item of myIterable) {
+	console.log(item);
+}
+
+
+
